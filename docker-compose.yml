@@ -1,0 +1,233 @@
+version: '3.8'
+
+networks:
+  it:
+    name: it
+
+services:
+  discovery:
+    image: ghcr.io/horockey/service_discovery
+    container_name: discovery
+    hostname: discovery
+    ports:
+      - "6500:6500"
+    environment:
+      - SERVICE_DISCOVERY_API_KEY=ak
+    networks:
+      - it
+    healthcheck:
+      test: ["CMD-SHELL", "expr $$(wget -S -O /dev/null http://localhost:6500/node --header='X-Api-Key: ak' 2>&1 | grep 'HTTP/' | tail -n 1 | awk '{print $$2}') == 200 || exit 1"]
+      interval: 2s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  monkey1:
+    image: ghcr.io/horockey/dkv_monkey_service
+    container_name: monkey1
+    hostname: monkey1
+    ports:
+      - "7001:80"
+      - "7101:7000"
+    volumes:
+      - /home/root/dkv_local_data/monkey1:/badger
+    networks:
+      - it
+    depends_on:
+      discovery:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6500/health"]
+      interval: 1s
+      timeout: 1s
+      retries: 1
+      start_period: 1s
+
+  monkey2:
+    image: ghcr.io/horockey/dkv_monkey_service
+    container_name: monkey2
+    hostname: monkey2
+    ports:
+      - "7002:80"
+      - "7102:7000"
+    volumes:
+      - /home/root/dkv_local_data/monkey2:/badger
+    networks:
+      - it
+    depends_on:
+      discovery:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6500/health"]
+      interval: 1s
+      timeout: 1s
+      retries: 1
+      start_period: 1s
+
+  monkey3:
+    image: ghcr.io/horockey/dkv_monkey_service
+    container_name: monkey3
+    hostname: monkey3
+    ports:
+      - "7003:80"
+      - "7103:7000"
+    volumes:
+      - /home/root/dkv_local_data/monkey3:/badger
+    networks:
+      - it
+    depends_on:
+      discovery:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6500/health"]
+      interval: 1s
+      timeout: 1s
+      retries: 1
+      start_period: 1s
+
+  monkey4:
+    image: ghcr.io/horockey/dkv_monkey_service
+    container_name: monkey4
+    hostname: monkey4
+    ports:
+      - "7004:80"
+      - "7104:7000"
+    volumes:
+      - /home/root/dkv_local_data/monkey4:/badger
+    networks:
+      - it
+    depends_on:
+      discovery:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6500/health"]
+      interval: 1s
+      timeout: 1s
+      retries: 1
+      start_period: 1s
+
+  monkey5:
+    image: ghcr.io/horockey/dkv_monkey_service
+    container_name: monkey5
+    hostname: monkey5
+    ports:
+      - "7005:80"
+      - "7105:7000"
+    volumes:
+      - /home/root/dkv_local_data/monkey5:/badger
+    networks:
+      - it
+    depends_on:
+      discovery:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6500/health"]
+      interval: 1s
+      timeout: 1s
+      retries: 1
+      start_period: 1s
+
+  monkey6:
+    image: ghcr.io/horockey/dkv_monkey_service
+    container_name: monkey6
+    hostname: monkey6
+    ports:
+      - "7006:80"
+      - "7106:7000"
+    volumes:
+      - /home/root/dkv_local_data/monkey6:/badger
+    networks:
+      - it
+    depends_on:
+      discovery:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6500/health"]
+      interval: 1s
+      timeout: 1s
+      retries: 1
+      start_period: 1s
+
+  monkey7:
+    image: ghcr.io/horockey/dkv_monkey_service
+    container_name: monkey7
+    hostname: monkey7
+    ports:
+      - "7007:80"
+      - "7107:7000"
+    volumes:
+      - /home/root/dkv_local_data/monkey7:/badger
+    networks:
+      - it
+    depends_on:
+      discovery:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6500/health"]
+      interval: 1s
+      timeout: 1s
+      retries: 1
+      start_period: 1s
+
+  monkey8:
+    image: ghcr.io/horockey/dkv_monkey_service
+    container_name: monkey8
+    hostname: monkey8
+    ports:
+      - "7008:80"
+      - "7108:7000"
+    volumes:
+      - /home/root/dkv_local_data/monkey8:/badger
+    networks:
+      - it
+    depends_on:
+      discovery:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6500/health"]
+      interval: 1s
+      timeout: 1s
+      retries: 1
+      start_period: 1s
+
+  monkey9:
+    image: ghcr.io/horockey/dkv_monkey_service
+    container_name: monkey9
+    hostname: monkey9
+    ports:
+      - "7009:80"
+      - "7109:7000"
+    volumes:
+      - /home/root/dkv_local_data/monkey9:/badger
+    networks:
+      - it
+    depends_on:
+      discovery:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6500/health"]
+      interval: 1s
+      timeout: 1s
+      retries: 1
+      start_period: 1s
+
+  monkey10:
+    image: ghcr.io/horockey/dkv_monkey_service
+    container_name: monkey10
+    hostname: monkey10
+    ports:
+      - "7010:80"
+      - "7110:7000"
+    volumes:
+      - /home/root/dkv_local_data/monkey10:/badger
+    networks:
+      - it
+    depends_on:
+      discovery:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6500/health"]
+      interval: 1s
+      timeout: 1s
+      retries: 1
+      start_period: 1s

@@ -4,6 +4,7 @@ COPY . .
 RUN CGO_ENABLED=0 go build -o /build/dkv_monkey_service ./cmd/dkv_monkey_service
 
 FROM alpine
+RUN mkdir -p /runtime/
 COPY --from=builder /build/dkv_monkey_service /usr/bin/dkv_monkey_service
 ENV TZ=Europe/Moscow
 CMD [ "dkv_monkey_service" ]
