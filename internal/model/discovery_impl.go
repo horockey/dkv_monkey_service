@@ -5,17 +5,24 @@ import (
 
 	"github.com/horockey/dkv"
 	serdisc "github.com/horockey/service_discovery/api"
+	"github.com/rs/zerolog"
 	"github.com/samber/lo"
 )
 
 var _ dkv.Discovery = &DiscoveryImpl{}
 
 type DiscoveryImpl struct {
-	Cl *serdisc.Client
+	Cl     *serdisc.Client
+	Logger zerolog.Logger
 }
 
 func (impl *DiscoveryImpl) Register(ctx context.Context, hostname string, updCb func(dkv.Node) error, meta map[string]string) error {
 	cb := func(n serdisc.Node) error {
+		impl.Logger.
+			Debug().
+			Str("hostname", n.Hostname).
+			Str("state", n.State).
+			Msg("nodes upd")
 		return updCb(dkv.Node(n))
 	}
 	return impl.Cl.Register(ctx, hostname, cb, meta)

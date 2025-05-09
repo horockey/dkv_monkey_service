@@ -44,8 +44,8 @@ github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+
 github.com/gorilla/mux v1.8.1 h1:TuBL49tXwgrFYWhqrNgrUNEY92u81SPhu7sTdzQEiWY=
 github.com/gorilla/mux v1.8.1/go.mod h1:AKf9I4AEqPTmMytcMc0KkNouC66V3BtZ4qD5fmWSiMQ=
 github.com/hashicorp/hcl v1.0.0/go.mod h1:E5yfLk+7swimpb2L/Alb/PJmXilQ/rhwaUYs4T20WEQ=
-github.com/horockey/dkv v0.0.7 h1:al2eOcgg9AG3JoI9ziwXUhIB2ZV9nIMhpEtdl8N4/gE=
-github.com/horockey/dkv v0.0.7/go.mod h1:b6SIahox5ph5tvrCXS69Ef86yXjW2lqjT+K98ClC1gw=
+github.com/horockey/dkv v0.0.20 h1:qg8hYja7dPuiLO27K1eX4KpoCZyrDdF/wGXhtjWKHHs=
+github.com/horockey/dkv v0.0.20/go.mod h1:b6SIahox5ph5tvrCXS69Ef86yXjW2lqjT+K98ClC1gw=
 github.com/horockey/go-toolbox v1.7.3 h1:3dyMIm7jeG5xmcCO6WAKV8f1KFgke3YypF1EjmMzeOU=
 github.com/horockey/go-toolbox v1.7.3/go.mod h1:WOOc1bgvl5k8K3uZNjNEh4XYAU/BoYUfJzRRew3XozA=
 github.com/horockey/service_discovery v1.1.2 h1:K4PmULprPXiLuvMw8Yseeo9sgEloQfTzTdzDdFKdLxg=
