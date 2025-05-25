@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"math/rand/v2"
 	"net/http"
 	"os"
 	"os/signal"
@@ -146,32 +145,15 @@ func main() {
 
 		time.Sleep(time.Second * 5)
 
-		for {
-			select {
-			case <-ctx.Done():
-				return
-			default:
-				idx := rand.IntN(TotalStorageCap)
-				key := "monkey_" + strconv.Itoa(idx)
-				value := model.Value{
-					Foo: uuid.NewString(),
-					Bar: uuid.NewString(),
-				}
-				action := rand.IntN(2)
-				switch action {
-				case 0:
-					// write
-					if err := cl.AddOrUpdate(ctx, key, value); err != nil {
-						logger.Error().Err(fmt.Errorf("writing to client: %w", err)).Send()
-					}
-				case 1:
-					// read
-					if _, err := cl.Get(ctx, key); err != nil && !errors.Is(err, dkv.ErrKeyNotFoundError{Key: key}) {
-						logger.Error().Err(fmt.Errorf("reading from client: %w", err)).Send()
-					}
-				}
-
-				time.Sleep(time.Millisecond * 100)
+		insertCnt := 10_000
+		for idx := range insertCnt {
+			key := "monkey_" + strconv.Itoa(idx)
+			value := model.Value{
+				Foo: uuid.NewString(),
+				Bar: uuid.NewString(),
+			}
+			if err := cl.AddOrUpdate(ctx, key, value); err != nil {
+				logger.Error().Err(fmt.Errorf("writing to client: %w", err)).Send()
 			}
 		}
 	}()
