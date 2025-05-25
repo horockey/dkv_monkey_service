@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"strconv"
 	"sync"
 	"syscall"
 	"time"
@@ -146,8 +145,8 @@ func main() {
 		time.Sleep(time.Second * 5)
 
 		insertCnt := 10_000
-		for idx := range insertCnt {
-			key := "monkey_" + strconv.Itoa(idx)
+		for range insertCnt {
+			key := "monkey_" + uuid.NewString()
 			value := model.Value{
 				Foo: uuid.NewString(),
 				Bar: uuid.NewString(),
