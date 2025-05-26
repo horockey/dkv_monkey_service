@@ -19,7 +19,7 @@ type DiscoveryImpl struct {
 func (impl *DiscoveryImpl) Register(ctx context.Context, hostname string, updCb func(dkv.Node) error, meta map[string]string) error {
 	cb := func(n serdisc.Node) error {
 		impl.Logger.
-			Debug().
+			Warn().
 			Str("hostname", n.Hostname).
 			Str("state", n.State).
 			Msg("nodes upd")

@@ -53,7 +53,7 @@ func main() {
 	cl, err := dkv.NewClient(
 		"dkv_ak", // TODO: from cfg
 		hostname, // TODO: from cfg
-		&model.DiscoveryImpl{Cl: disc},
+		&model.DiscoveryImpl{Cl: disc, Logger: logger.With().Str("scope", "dkv_cl_impl").Logger()},
 		dkv.WithServicePort[model.Value](7000),
 		dkv.WithLogger[model.Value](
 			logger.
@@ -144,7 +144,7 @@ func main() {
 
 		time.Sleep(time.Second * 5)
 
-		insertCnt := 10_000
+		insertCnt := 1_000
 		for range insertCnt {
 			key := "monkey_" + uuid.NewString()
 			value := model.Value{
