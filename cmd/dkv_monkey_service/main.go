@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strconv"
 	"sync"
 	"syscall"
 	"time"
@@ -144,7 +145,15 @@ func main() {
 
 		time.Sleep(time.Second * 5)
 
-		insertCnt := 1_000
+		insertCnt := 100
+		if v := os.Getenv("KEYS_COUNT"); v != "" {
+			cnt := 0
+			cnt, err = strconv.Atoi(v)
+			if err == nil {
+				insertCnt = cnt
+			}
+		}
+
 		for range insertCnt {
 			key := "monkey_" + uuid.NewString()
 			value := model.Value{

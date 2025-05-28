@@ -4,8 +4,8 @@ go 1.24.2
 
 require (
 	github.com/google/uuid v1.6.0
-	github.com/horockey/dkv v0.0.34
-	github.com/horockey/go-toolbox v1.7.3
+	github.com/horockey/dkv v0.0.35
+	github.com/horockey/go-toolbox v1.7.4
 	github.com/horockey/service_discovery v1.1.2
 	github.com/prometheus/client_golang v1.17.0
 	github.com/rs/zerolog v1.34.0
@@ -14,6 +14,7 @@ require (
 
 require (
 	github.com/AndreasBriese/bbloom v0.0.0-20190825152654-46b345b51c96 // indirect
+	github.com/alitto/pond/v2 v2.3.4 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash v1.1.0 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
