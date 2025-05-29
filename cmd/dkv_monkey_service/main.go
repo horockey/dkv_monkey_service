@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	_ "net/http/pprof"
 	"os"
 	"os/signal"
 	"strconv"
@@ -21,11 +22,10 @@ import (
 	"github.com/rs/zerolog"
 )
 
-const TotalStorageCap = 1_000_000
-
 func main() {
 	serv := http.Server{
-		Addr: "0.0.0.0:80", // TODO: from cfg
+		Addr:    "0.0.0.0:80", // TODO: from cfg
+		Handler: http.DefaultServeMux,
 	}
 
 	logger := zerolog.New(zerolog.ConsoleWriter{
