@@ -4,7 +4,7 @@ go 1.24.2
 
 require (
 	github.com/google/uuid v1.6.0
-	github.com/horockey/dkv v0.1.13
+	github.com/horockey/dkv v0.2.0
 	github.com/horockey/go-toolbox v1.7.4
 	github.com/horockey/service_discovery v1.2.0
 	github.com/prometheus/client_golang v1.17.0
